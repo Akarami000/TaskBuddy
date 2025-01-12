@@ -24,7 +24,6 @@ export interface LogoutSuccessAction {
   type: typeof LOGOUT_SUCCESS;
 }
 
-
 // Union of all action types
 export type AuthAction =
   | LoginRequestAction
