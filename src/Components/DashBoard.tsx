@@ -9,8 +9,10 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import "../customerStyling/DashboardMobile.css"
-import Popup from "./TaskManagePop-up";
+import Popup from "./TaskManagePop-up"; // Verify file exists
 import StickyNote from "./StickyNote";
+import { useLocation } from "react-router-dom";
+
 
 const initialTasks = {
   todo: [
@@ -45,6 +47,10 @@ const SortableItem = ({ id, content }: { id: string; content: string }) => {
 };
 
 const Dashboard: React.FC = () => {
+    const location = useLocation();
+    const user = location.state?.user;
+    console.log(user.photoURL);
+    console.log(user);
   const [tasks, setTasks] = useState(initialTasks);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -101,9 +107,16 @@ const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen" style={{ background: "rgba(255, 255, 255, 1)" }}>
       {/* Header Section */}
-      <header className="flex justify-between items-center p-4 bg-white rounded ">
+      <header className="flex justify-between items-center p-4 bg-white rounded">
         <h1 className="text-2xl font-Mulish text-gray-800">TaskBuddy</h1>
-        <div className="w-10 h-10 bg-gray-300 rounded-full" />
+        <div className="flex items-center space-x-2">
+            <img
+            src={user?.photoURL || "https://via.placeholder.com/150"}
+            alt="User"
+            className="w-10 h-10 bg-gray-300 rounded-full"
+            />
+            <p className="text-sm text-gray-600">{user?.displayName || "Guest"}</p>
+        </div>
       </header>
 
       {/* Filters and Buttons */}
@@ -138,9 +151,9 @@ const Dashboard: React.FC = () => {
           <input
             type="text"
             placeholder="Search tasks..."
-            className="px-3 py-2 border border-gray-300 rounded shadow-sm w-full sm:w-60 mb-2 sm:mb-0"
+            className="px-3 py-2 border border-gray-300 rounded-full shadow-sm w-full sm:w-60 mb-2 sm:mb-0"
           />
-          <button className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-800 w-full sm:w-auto" 
+          <button className="px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-800 w-full sm:w-auto" 
                   onClick={() => setShowPopup(true)}>
             + Add Task
           </button>

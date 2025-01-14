@@ -20,7 +20,15 @@ export interface LoginFailureAction {
   type: typeof LOGIN_FAILURE;
   payload: string; // Error message
 }
-
+const loginSuccess = (user) => ({
+  type: "LOGIN_SUCCESS",
+  payload: {
+    uid: user.uid,
+    email: user.email,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+  },
+});
 export interface LogoutSuccessAction {
   type: typeof LOGOUT_SUCCESS;
 }
@@ -38,8 +46,8 @@ export const googleLogin = () => async (dispatch: Dispatch<AuthAction>) => {
   const provider = new GoogleAuthProvider();
   try {
     const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-    dispatch({ type: LOGIN_SUCCESS, payload: user });
+    const user = loginSuccess(result.user);
+    dispatch({ type: LOGIN_SUCCESS, payload: user.payload });
   } catch (error: any) {
     dispatch({ type: LOGIN_FAILURE, payload: error.message });
   }
