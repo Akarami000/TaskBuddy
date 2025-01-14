@@ -10,6 +10,7 @@ export interface LoginRequestAction {
   type: typeof LOGIN_REQUEST;
 }
 
+
 export interface LoginSuccessAction {
   type: typeof LOGIN_SUCCESS;
   payload: any; // Replace with a proper user type if available
