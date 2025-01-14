@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
 const Popup = ({ onClose }: { onClose: () => void }) => {
   const [taskCategory, setTaskCategory] = useState("work");
@@ -67,7 +67,7 @@ const Popup = ({ onClose }: { onClose: () => void }) => {
             <span className="block font-medium mb-1">Task Category:</span>
             <div className="flex space-x-2">
               <button
-                className={`px-4 py-2 border rounded ${
+                className={`px-4 py-2 border rounded-full ${
                   taskCategory === "work"
                     ? "bg-purple-600 text-white"
                     : "bg-white border-gray-300"
@@ -77,7 +77,7 @@ const Popup = ({ onClose }: { onClose: () => void }) => {
                 Work
               </button>
               <button
-                className={`px-4 py-2 border rounded ${
+                className={`px-4 py-2 border rounded-full ${
                   taskCategory === "personal"
                     ? "bg-purple-600 text-white"
                     : "bg-white border-gray-300"
@@ -94,7 +94,7 @@ const Popup = ({ onClose }: { onClose: () => void }) => {
             <span className="block font-medium mb-1">Due On:</span>
             <input
               type="date"
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-purple-400"
+              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring focus:ring-purple-400"
             />
           </div>
 
@@ -104,7 +104,7 @@ const Popup = ({ onClose }: { onClose: () => void }) => {
             <select
               value={taskStatus}
               onChange={(e) => setTaskStatus(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-purple-400"
+              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring focus:ring-purple-400"
             >
               <option value="To-do">To-do</option>
               <option value="In-progress">In-progress</option>
@@ -124,12 +124,12 @@ const Popup = ({ onClose }: { onClose: () => void }) => {
         {/* Footer Buttons */}
         <div className="flex justify-end space-x-2">
           <button
-            className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+            className="px-4 py-2 border border-gray-300 text-gray-800 rounded-full hover:bg-gray-100"
             onClick={onClose}
           >
             Cancel
           </button>
-          <button className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
+          <button className="px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700">
             Create
           </button>
         </div>
