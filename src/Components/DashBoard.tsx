@@ -10,6 +10,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import "../customerStyling/DashboardMobile.css"
 import Popup from "./TaskManagePop-up";
+import StickyNote from "./StickyNote";
 
 const initialTasks = {
   todo: [
@@ -106,7 +107,7 @@ const Dashboard: React.FC = () => {
       </header>
 
       {/* Filters and Buttons */}
-      <div className="flex flex-wrap justify-between items-center mt-4">
+      <div className="flex flex-wrap m-4 justify-between items-center ">
         <div className="flex flex-wrap space-x-4 w-full sm:w-auto">
           <div className="w-full sm:w-auto mb-2 sm:mb-0">
             <label htmlFor="category" className="block text-sm font-medium text-gray-700">
@@ -114,23 +115,23 @@ const Dashboard: React.FC = () => {
             </label>
             <select 
               id="category"
-              className="mt-1 block w-full sm:w-40 px-3 py-2 bg-white border border-gray-300 rounded shadow-sm"
+              className="mt-1 block  w-full sm:w-40 px-3 py-2 bg-white border border-gray-300 rounded-full shadow-sm"
             >
               <option value="work">Work</option>
               <option value="personal">Personal</option>
             </select>
           </div>
 
-          <div className="w-full sm:w-auto mb-2 sm:mb-0">
-            <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">
-              Due Date
-            </label>
-            <input
-              type="date"
-              id="dueDate"
-              className="mt-1 block w-full sm:w-40 px-3 py-2 bg-white border border-gray-300 rounded shadow-sm"
-            />
-          </div>
+                <div className="w-full sm:w-auto mb-2 sm:mb-0">
+        <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">
+            Due Date
+        </label>
+        <input
+            type="date"
+            id="dueDate"
+            className="mt-1 block w-full sm:w-40 px-3 py-2 bg-white border border-gray-300 rounded-full shadow-sm"
+        />
+</div>
         </div>
 
         <div className="flex flex-wrap items-center space-x-4 mt-2 sm:mt-0 w-full sm:w-auto">
@@ -156,16 +157,18 @@ const Dashboard: React.FC = () => {
                 className="p-4 rounded shadow"
                 style={{ background: "rgba(88, 87, 81, 0.07)" }}
               >
-                <h2 className="text-lg font-bold text-gray-800 mb-4">
+                <h3 className="text-lg font-bold text-gray-800 mb-4">
                   {status === "todo"
                     ? "To-Do"
                     : status === "inProgress"
                     ? "In-Progress"
                     : "Complete"}
-                </h2>
+                </h3>
                 {tasks[status].map((task) => (
-                  <SortableItem key={task.id} id={task.id} content={task.content} />
-                ))}
+                  <div>
+                    <StickyNote key={task.id}  title={task.content} onEdit={() => {}} onDelete={() => {}}/>
+                  </div>
+             ))}
               </div>
             </SortableContext>
           ))}
